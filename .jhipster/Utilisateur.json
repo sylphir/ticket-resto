@@ -1,0 +1,38 @@
+{
+    "name": "Utilisateur",
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "prenom",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "ticket",
+            "otherEntityRelationshipName": "utilisateur",
+            "relationshipName": "ticket"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "entreprise",
+            "otherEntityRelationshipName": "utilisateur",
+            "relationshipName": "entreprise",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200206142020",
+    "entityTableName": "utilisateur",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

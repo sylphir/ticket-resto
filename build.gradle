@@ -60,7 +60,7 @@ if (project.hasProperty("gae")) {
             mavenBom 'io.github.jhipster:jhipster-dependencies:${jhipster_dependencies_version}'
         }
     }
-    appengineStage.dependsOn thinResolve 
+    appengineStage.dependsOn thinResolve
 }
 
 
@@ -88,7 +88,6 @@ springBoot {
 
 test {
     useJUnitPlatform()
-    exclude "**/*IT*", "**/*IntTest*"
 
     testLogging {
         events 'FAILED', 'SKIPPED'
@@ -103,7 +102,6 @@ task integrationTest(type: Test) {
     useJUnitPlatform()
     description = "Execute integration tests."
     group = "verification"
-    include "**/*IT*", "**/*IntTest*"
 
     testLogging {
         events 'FAILED', 'SKIPPED'

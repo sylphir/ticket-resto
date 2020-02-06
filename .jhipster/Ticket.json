@@ -1,0 +1,28 @@
+{
+    "name": "Ticket",
+    "fields": [
+        {
+            "fieldName": "valeur",
+            "fieldType": "Float"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "utilisateur",
+            "otherEntityRelationshipName": "ticket",
+            "relationshipName": "utilisateur",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200206142019",
+    "entityTableName": "ticket",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

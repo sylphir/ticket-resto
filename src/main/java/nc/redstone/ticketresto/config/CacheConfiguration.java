@@ -42,6 +42,10 @@ public class CacheConfiguration {
             createCache(cm, nc.redstone.ticketresto.domain.User.class.getName());
             createCache(cm, nc.redstone.ticketresto.domain.Authority.class.getName());
             createCache(cm, nc.redstone.ticketresto.domain.User.class.getName() + ".authorities");
+            createCache(cm, nc.redstone.ticketresto.domain.Ticket.class.getName());
+            createCache(cm, nc.redstone.ticketresto.domain.Utilisateur.class.getName());
+            createCache(cm, nc.redstone.ticketresto.domain.Utilisateur.class.getName() + ".tickets");
+            createCache(cm, nc.redstone.ticketresto.domain.Entreprise.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
