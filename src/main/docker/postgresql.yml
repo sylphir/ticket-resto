@@ -1,0 +1,11 @@
+version: '2'
+services:
+  ticketresto-postgresql:
+    image: postgres:11.6
+    # volumes:
+    #     - ~/volumes/jhipster/ticketResto/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=ticketResto
+      - POSTGRES_PASSWORD=
+    ports:
+      - 5432:5432

@@ -1,0 +1,41 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "nc.redstone.ticketresto",
+      "nativeLanguage": "fr"
+    },
+    "jhipsterVersion": "6.6.0",
+    "applicationType": "monolith",
+    "baseName": "ticketResto",
+    "packageName": "nc.redstone.ticketresto",
+    "packageFolder": "nc/redstone/ticketresto",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MGIxMmEwYTZjNDhhOGYyZWNhYWIwYzQ1MTFiYjRjMWE3NDIyMzBlZDQ4MDllYzVkNzQ2ODM1NDViZDcxNTU5YWI5YTdhZDBlMDgwNTIyODAxYjg1ZTNkMDg5NWEzZDc4OWU0OGZiMjg5NDYxYzY2NDY4YWMyMzljY2QyYzM0YzE=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "skipClient": true,
+    "creationTimestamp": 1580998532026,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "fr",
+    "languages": ["fr"],
+    "blueprints": []
+  }
+}

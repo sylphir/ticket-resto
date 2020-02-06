@@ -1,0 +1,35 @@
+entity Ticket {
+	valeur Float
+}
+
+entity Utilisateur {
+	nom String,
+    prenom String
+}
+
+// an ignored comment
+/** not an ignored comment */
+entity Entreprise {
+	nom String
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Utilisateur{ticket} to Ticket
+}
+
+relationship ManyToOne {
+	Utilisateur{entreprise} to Entreprise
+}
+
+// Set pagination options
+paginate * with infinite-scroll
+
+// Use Data Transfert Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
