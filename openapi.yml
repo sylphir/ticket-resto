@@ -1,1 +1,1899 @@
-:q!
+openapi: 3.0.0
+info:
+  description: Api Documentation
+  version: "1.0"
+  title: Api Documentation
+  termsOfService: urn:tos
+  contact: {}
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+tags:
+  - name: account-resource
+    description: Account Resource
+  - name: audit-resource
+    description: Audit Resource
+  - name: basic-error-controller
+    description: Basic Error Controller
+  - name: entreprise-resource
+    description: Entreprise Resource
+  - name: exception-translator-test-controller
+    description: Exception Translator Test Controller
+  - name: operation-handler
+    description: Operation Handler
+  - name: ticket-resource
+    description: Ticket Resource
+  - name: user-jwt-controller
+    description: User JWT Controller
+  - name: user-resource
+    description: User Resource
+  - name: utilisateur-resource
+    description: Utilisateur Resource
+  - name: web-configurer-test-controller
+    description: Web Configurer Test Controller
+  - name: web-mvc-links-handler
+    description: Web Mvc Links Handler
+paths:
+  /actuator:
+    get:
+      tags:
+        - web-mvc-links-handler
+      summary: links
+      operationId: linksUsingGET
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+                  additionalProperties:
+                    $ref: "#/components/schemas/Link"
+            application/vnd.spring-boot.actuator.v2+json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+                  additionalProperties:
+                    $ref: "#/components/schemas/Link"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  /actuator/health:
+    get:
+      tags:
+        - operation-handler
+      summary: handle
+      operationId: handleUsingGET_2
+      requestBody:
+        $ref: "#/components/requestBodies/handleUsingGET_2Body"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v2+json:
+              schema:
+                type: object
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  "/actuator/health/{component}":
+    get:
+      tags:
+        - operation-handler
+      summary: handle
+      operationId: handleUsingGET_1
+      requestBody:
+        $ref: "#/components/requestBodies/handleUsingGET_2Body"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v2+json:
+              schema:
+                type: object
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  "/actuator/health/{component}/{instance}":
+    get:
+      tags:
+        - operation-handler
+      summary: handle
+      operationId: handleUsingGET
+      requestBody:
+        $ref: "#/components/requestBodies/handleUsingGET_2Body"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v2+json:
+              schema:
+                type: object
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  /actuator/info:
+    get:
+      tags:
+        - operation-handler
+      summary: handle
+      operationId: handleUsingGET_3
+      requestBody:
+        $ref: "#/components/requestBodies/handleUsingGET_2Body"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v2+json:
+              schema:
+                type: object
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  /api/account:
+    get:
+      tags:
+        - account-resource
+      summary: getAccount
+      operationId: getAccountUsingGET
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/UserDTO"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+    post:
+      tags:
+        - account-resource
+      summary: saveAccount
+      operationId: saveAccountUsingPOST
+      requestBody:
+        $ref: "#/components/requestBodies/UserDTO"
+      responses:
+        "200":
+          description: OK
+        "201":
+          description: Created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  /api/account/change-password:
+    post:
+      tags:
+        - account-resource
+      summary: changePassword
+      operationId: changePasswordUsingPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PasswordChangeDTO"
+        description: passwordChangeDto
+        required: true
+      responses:
+        "200":
+          description: OK
+        "201":
+          description: Created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  /api/account/reset-password/finish:
+    post:
+      tags:
+        - account-resource
+      summary: finishPasswordReset
+      operationId: finishPasswordResetUsingPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/KeyAndPasswordVM"
+        description: keyAndPassword
+        required: true
+      responses:
+        "200":
+          description: OK
+        "201":
+          description: Created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  /api/account/reset-password/init:
+    post:
+      tags:
+        - account-resource
+      summary: requestPasswordReset
+      operationId: requestPasswordResetUsingPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        description: mail
+        required: true
+      responses:
+        "200":
+          description: OK
+        "201":
+          description: Created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  /api/activate:
+    get:
+      tags:
+        - account-resource
+      summary: activateAccount
+      operationId: activateAccountUsingGET
+      parameters:
+        - name: key
+          in: query
+          description: key
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  /api/authenticate:
+    get:
+      tags:
+        - account-resource
+      summary: isAuthenticated
+      operationId: isAuthenticatedUsingGET
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                type: string
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+    post:
+      tags:
+        - user-jwt-controller
+      summary: authorize
+      operationId: authorizeUsingPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginVM"
+        description: loginVM
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/JWTToken"
+        "201":
+          description: Created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  /api/entreprises:
+    get:
+      tags:
+        - entreprise-resource
+      summary: getAllEntreprises
+      operationId: getAllEntreprisesUsingGET
+      parameters:
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          in: query
+          description: Page number of the requested page
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: paged
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: size
+          in: query
+          description: Size of a page
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sort
+          in: query
+          description: "Sorting criteria in the format: property(,asc|desc). Default sort
+            order is ascending. Multiple sort criteria are supported."
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: sort.sorted
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: sort.unsorted
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: unpaged
+          in: query
+          required: false
+          schema:
+            type: boolean
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/EntrepriseDTO"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+    post:
+      tags:
+        - entreprise-resource
+      summary: createEntreprise
+      operationId: createEntrepriseUsingPOST
+      requestBody:
+        $ref: "#/components/requestBodies/EntrepriseDTO"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/EntrepriseDTO"
+        "201":
+          description: Created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+    put:
+      tags:
+        - entreprise-resource
+      summary: updateEntreprise
+      operationId: updateEntrepriseUsingPUT
+      requestBody:
+        $ref: "#/components/requestBodies/EntrepriseDTO"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/EntrepriseDTO"
+        "201":
+          description: Created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  "/api/entreprises/{id}":
+    get:
+      tags:
+        - entreprise-resource
+      summary: getEntreprise
+      operationId: getEntrepriseUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/EntrepriseDTO"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - entreprise-resource
+      summary: deleteEntreprise
+      operationId: deleteEntrepriseUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: OK
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      deprecated: false
+  /api/register:
+    post:
+      tags:
+        - account-resource
+      summary: registerAccount
+      operationId: registerAccountUsingPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ManagedUserVM"
+        description: managedUserVM
+        required: true
+      responses:
+        "201":
+          description: Created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  /api/test-cors:
+    get:
+      tags:
+        - web-configurer-test-controller
+      summary: testCorsOnApiPath
+      operationId: testCorsOnApiPathUsingGET
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  /api/tickets:
+    get:
+      tags:
+        - ticket-resource
+      summary: getAllTickets
+      operationId: getAllTicketsUsingGET
+      parameters:
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          in: query
+          description: Page number of the requested page
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: paged
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: size
+          in: query
+          description: Size of a page
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sort
+          in: query
+          description: "Sorting criteria in the format: property(,asc|desc). Default sort
+            order is ascending. Multiple sort criteria are supported."
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: sort.sorted
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: sort.unsorted
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: unpaged
+          in: query
+          required: false
+          schema:
+            type: boolean
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TicketDTO"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+    post:
+      tags:
+        - ticket-resource
+      summary: createTicket
+      operationId: createTicketUsingPOST
+      requestBody:
+        $ref: "#/components/requestBodies/TicketDTO"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/TicketDTO"
+        "201":
+          description: Created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+    put:
+      tags:
+        - ticket-resource
+      summary: updateTicket
+      operationId: updateTicketUsingPUT
+      requestBody:
+        $ref: "#/components/requestBodies/TicketDTO"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/TicketDTO"
+        "201":
+          description: Created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  "/api/tickets/{id}":
+    get:
+      tags:
+        - ticket-resource
+      summary: getTicket
+      operationId: getTicketUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/TicketDTO"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - ticket-resource
+      summary: deleteTicket
+      operationId: deleteTicketUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: OK
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      deprecated: false
+  /api/users:
+    get:
+      tags:
+        - user-resource
+      summary: getAllUsers
+      operationId: getAllUsersUsingGET
+      parameters:
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          in: query
+          description: Page number of the requested page
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: paged
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: size
+          in: query
+          description: Size of a page
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sort
+          in: query
+          description: "Sorting criteria in the format: property(,asc|desc). Default sort
+            order is ascending. Multiple sort criteria are supported."
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: sort.sorted
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: sort.unsorted
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: unpaged
+          in: query
+          required: false
+          schema:
+            type: boolean
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserDTO"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+    post:
+      tags:
+        - user-resource
+      summary: createUser
+      operationId: createUserUsingPOST
+      requestBody:
+        $ref: "#/components/requestBodies/UserDTO"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/User"
+        "201":
+          description: Created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+    put:
+      tags:
+        - user-resource
+      summary: updateUser
+      operationId: updateUserUsingPUT
+      requestBody:
+        $ref: "#/components/requestBodies/UserDTO"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/UserDTO"
+        "201":
+          description: Created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  /api/users/authorities:
+    get:
+      tags:
+        - user-resource
+      summary: getAuthorities
+      operationId: getAuthoritiesUsingGET
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                type: array
+                items:
+                  type: string
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  "/api/users/{login}":
+    get:
+      tags:
+        - user-resource
+      summary: getUser
+      operationId: getUserUsingGET
+      parameters:
+        - name: login
+          in: path
+          description: login
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/UserDTO"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - user-resource
+      summary: deleteUser
+      operationId: deleteUserUsingDELETE
+      parameters:
+        - name: login
+          in: path
+          description: login
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      deprecated: false
+  /api/utilisateurs:
+    get:
+      tags:
+        - utilisateur-resource
+      summary: getAllUtilisateurs
+      operationId: getAllUtilisateursUsingGET
+      parameters:
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          in: query
+          description: Page number of the requested page
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: paged
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: size
+          in: query
+          description: Size of a page
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sort
+          in: query
+          description: "Sorting criteria in the format: property(,asc|desc). Default sort
+            order is ascending. Multiple sort criteria are supported."
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: sort.sorted
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: sort.unsorted
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: unpaged
+          in: query
+          required: false
+          schema:
+            type: boolean
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UtilisateurDTO"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+    post:
+      tags:
+        - utilisateur-resource
+      summary: createUtilisateur
+      operationId: createUtilisateurUsingPOST
+      requestBody:
+        $ref: "#/components/requestBodies/UtilisateurDTO"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/UtilisateurDTO"
+        "201":
+          description: Created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+    put:
+      tags:
+        - utilisateur-resource
+      summary: updateUtilisateur
+      operationId: updateUtilisateurUsingPUT
+      requestBody:
+        $ref: "#/components/requestBodies/UtilisateurDTO"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/UtilisateurDTO"
+        "201":
+          description: Created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  "/api/utilisateurs/{id}":
+    get:
+      tags:
+        - utilisateur-resource
+      summary: getUtilisateur
+      operationId: getUtilisateurUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/UtilisateurDTO"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - utilisateur-resource
+      summary: deleteUtilisateur
+      operationId: deleteUtilisateurUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: OK
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      deprecated: false
+  /error:
+    get:
+      tags:
+        - basic-error-controller
+      summary: errorHtml
+      operationId: errorHtmlUsingGET
+      responses:
+        "200":
+          description: OK
+          content:
+            text/html:
+              schema:
+                $ref: "#/components/schemas/ModelAndView"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+    head:
+      tags:
+        - basic-error-controller
+      summary: errorHtml
+      operationId: errorHtmlUsingHEAD
+      responses:
+        "200":
+          description: OK
+          content:
+            text/html:
+              schema:
+                $ref: "#/components/schemas/ModelAndView"
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      deprecated: false
+    post:
+      tags:
+        - basic-error-controller
+      summary: errorHtml
+      operationId: errorHtmlUsingPOST
+      responses:
+        "200":
+          description: OK
+          content:
+            text/html:
+              schema:
+                $ref: "#/components/schemas/ModelAndView"
+        "201":
+          description: Created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+    put:
+      tags:
+        - basic-error-controller
+      summary: errorHtml
+      operationId: errorHtmlUsingPUT
+      responses:
+        "200":
+          description: OK
+          content:
+            text/html:
+              schema:
+                $ref: "#/components/schemas/ModelAndView"
+        "201":
+          description: Created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - basic-error-controller
+      summary: errorHtml
+      operationId: errorHtmlUsingDELETE
+      responses:
+        "200":
+          description: OK
+          content:
+            text/html:
+              schema:
+                $ref: "#/components/schemas/ModelAndView"
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      deprecated: false
+    options:
+      tags:
+        - basic-error-controller
+      summary: errorHtml
+      operationId: errorHtmlUsingOPTIONS
+      responses:
+        "200":
+          description: OK
+          content:
+            text/html:
+              schema:
+                $ref: "#/components/schemas/ModelAndView"
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      deprecated: false
+    patch:
+      tags:
+        - basic-error-controller
+      summary: errorHtml
+      operationId: errorHtmlUsingPATCH
+      responses:
+        "200":
+          description: OK
+          content:
+            text/html:
+              schema:
+                $ref: "#/components/schemas/ModelAndView"
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      deprecated: false
+  /management/audits:
+    get:
+      tags:
+        - audit-resource
+      summary: getByDates
+      operationId: getByDatesUsingGET
+      parameters:
+        - name: fromDate
+          in: query
+          description: fromDate
+          required: true
+          schema:
+            type: string
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          in: query
+          description: Page number of the requested page
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: paged
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: size
+          in: query
+          description: Size of a page
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sort
+          in: query
+          description: "Sorting criteria in the format: property(,asc|desc). Default sort
+            order is ascending. Multiple sort criteria are supported."
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: sort.sorted
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: sort.unsorted
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: toDate
+          in: query
+          description: toDate
+          required: true
+          schema:
+            type: string
+        - name: unpaged
+          in: query
+          required: false
+          schema:
+            type: boolean
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AuditEvent"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  "/management/audits/{id}":
+    get:
+      tags:
+        - audit-resource
+      summary: get
+      operationId: getUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/AuditEvent"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  /test/access-denied:
+    get:
+      tags:
+        - exception-translator-test-controller
+      summary: accessdenied
+      operationId: accessdeniedUsingGET
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  /test/concurrency-failure:
+    get:
+      tags:
+        - exception-translator-test-controller
+      summary: concurrencyFailure
+      operationId: concurrencyFailureUsingGET
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  /test/internal-server-error:
+    get:
+      tags:
+        - exception-translator-test-controller
+      summary: internalServerError
+      operationId: internalServerErrorUsingGET
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  /test/method-argument:
+    post:
+      tags:
+        - exception-translator-test-controller
+      summary: methodArgument
+      operationId: methodArgumentUsingPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TestDTO"
+        description: testDTO
+        required: true
+      responses:
+        "200":
+          description: OK
+        "201":
+          description: Created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  /test/missing-servlet-request-parameter:
+    get:
+      tags:
+        - exception-translator-test-controller
+      summary: missingServletRequestParameterException
+      operationId: missingServletRequestParameterExceptionUsingGET
+      parameters:
+        - name: param
+          in: query
+          description: param
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  /test/missing-servlet-request-part:
+    get:
+      tags:
+        - exception-translator-test-controller
+      summary: missingServletRequestPartException
+      operationId: missingServletRequestPartExceptionUsingGET
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  /test/response-status:
+    get:
+      tags:
+        - exception-translator-test-controller
+      summary: exceptionWithResponseStatus
+      operationId: exceptionWithResponseStatusUsingGET
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  /test/test-cors:
+    get:
+      tags:
+        - web-configurer-test-controller
+      summary: testCorsOnOtherPath
+      operationId: testCorsOnOtherPathUsingGET
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+  /test/unauthorized:
+    get:
+      tags:
+        - exception-translator-test-controller
+      summary: unauthorized
+      operationId: unauthorizedUsingGET
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      deprecated: false
+servers:
+  - url: //localhost/
+components:
+  requestBodies:
+    UserDTO:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/UserDTO"
+      description: userDTO
+      required: true
+    EntrepriseDTO:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/EntrepriseDTO"
+      description: entrepriseDTO
+      required: true
+    handleUsingGET_2Body:
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties:
+              type: string
+      description: body
+    TicketDTO:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/TicketDTO"
+      description: ticketDTO
+      required: true
+    UtilisateurDTO:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/UtilisateurDTO"
+      description: utilisateurDTO
+      required: true
+  schemas:
+    AuditEvent:
+      type: object
+      properties:
+        data:
+          type: object
+        principal:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        type:
+          type: string
+      title: AuditEvent
+    EntrepriseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        nom:
+          type: string
+      title: EntrepriseDTO
+      description: not an ignored comment
+    JWTToken:
+      type: object
+      properties:
+        id_token:
+          type: string
+      title: JWTToken
+    KeyAndPasswordVM:
+      type: object
+      properties:
+        key:
+          type: string
+        newPassword:
+          type: string
+      title: KeyAndPasswordVM
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+        templated:
+          type: boolean
+      title: Link
+    LoginVM:
+      type: object
+      properties:
+        password:
+          type: string
+        rememberMe:
+          type: boolean
+        username:
+          type: string
+      title: LoginVM
+    ManagedUserVM:
+      type: object
+      properties:
+        activated:
+          type: boolean
+        authorities:
+          type: array
+          items:
+            type: string
+        createdBy:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        email:
+          type: string
+        firstName:
+          type: string
+        id:
+          type: integer
+          format: int64
+        imageUrl:
+          type: string
+        langKey:
+          type: string
+        lastModifiedBy:
+          type: string
+        lastModifiedDate:
+          type: string
+          format: date-time
+        lastName:
+          type: string
+        login:
+          type: string
+        password:
+          type: string
+      title: ManagedUserVM
+    ModelAndView:
+      type: object
+      properties:
+        empty:
+          type: boolean
+        model:
+          type: object
+        modelMap:
+          type: object
+          additionalProperties:
+            type: object
+        reference:
+          type: boolean
+        status:
+          type: string
+          enum:
+            - 100 CONTINUE
+            - 101 SWITCHING_PROTOCOLS
+            - 102 PROCESSING
+            - 103 CHECKPOINT
+            - 200 OK
+            - 201 CREATED
+            - 202 ACCEPTED
+            - 203 NON_AUTHORITATIVE_INFORMATION
+            - 204 NO_CONTENT
+            - 205 RESET_CONTENT
+            - 206 PARTIAL_CONTENT
+            - 207 MULTI_STATUS
+            - 208 ALREADY_REPORTED
+            - 226 IM_USED
+            - 300 MULTIPLE_CHOICES
+            - 301 MOVED_PERMANENTLY
+            - 302 FOUND
+            - 302 MOVED_TEMPORARILY
+            - 303 SEE_OTHER
+            - 304 NOT_MODIFIED
+            - 305 USE_PROXY
+            - 307 TEMPORARY_REDIRECT
+            - 308 PERMANENT_REDIRECT
+            - 400 BAD_REQUEST
+            - 401 UNAUTHORIZED
+            - 402 PAYMENT_REQUIRED
+            - 403 FORBIDDEN
+            - 404 NOT_FOUND
+            - 405 METHOD_NOT_ALLOWED
+            - 406 NOT_ACCEPTABLE
+            - 407 PROXY_AUTHENTICATION_REQUIRED
+            - 408 REQUEST_TIMEOUT
+            - 409 CONFLICT
+            - 410 GONE
+            - 411 LENGTH_REQUIRED
+            - 412 PRECONDITION_FAILED
+            - 413 PAYLOAD_TOO_LARGE
+            - 413 REQUEST_ENTITY_TOO_LARGE
+            - 414 URI_TOO_LONG
+            - 414 REQUEST_URI_TOO_LONG
+            - 415 UNSUPPORTED_MEDIA_TYPE
+            - 416 REQUESTED_RANGE_NOT_SATISFIABLE
+            - 417 EXPECTATION_FAILED
+            - 418 I_AM_A_TEAPOT
+            - 419 INSUFFICIENT_SPACE_ON_RESOURCE
+            - 420 METHOD_FAILURE
+            - 421 DESTINATION_LOCKED
+            - 422 UNPROCESSABLE_ENTITY
+            - 423 LOCKED
+            - 424 FAILED_DEPENDENCY
+            - 426 UPGRADE_REQUIRED
+            - 428 PRECONDITION_REQUIRED
+            - 429 TOO_MANY_REQUESTS
+            - 431 REQUEST_HEADER_FIELDS_TOO_LARGE
+            - 451 UNAVAILABLE_FOR_LEGAL_REASONS
+            - 500 INTERNAL_SERVER_ERROR
+            - 501 NOT_IMPLEMENTED
+            - 502 BAD_GATEWAY
+            - 503 SERVICE_UNAVAILABLE
+            - 504 GATEWAY_TIMEOUT
+            - 505 HTTP_VERSION_NOT_SUPPORTED
+            - 506 VARIANT_ALSO_NEGOTIATES
+            - 507 INSUFFICIENT_STORAGE
+            - 508 LOOP_DETECTED
+            - 509 BANDWIDTH_LIMIT_EXCEEDED
+            - 510 NOT_EXTENDED
+            - 511 NETWORK_AUTHENTICATION_REQUIRED
+        view:
+          $ref: "#/components/schemas/View"
+        viewName:
+          type: string
+      title: ModelAndView
+    PasswordChangeDTO:
+      type: object
+      properties:
+        currentPassword:
+          type: string
+        newPassword:
+          type: string
+      title: PasswordChangeDTO
+    TestDTO:
+      type: object
+      properties:
+        test:
+          type: string
+      title: TestDTO
+    TicketDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        utilisateurId:
+          type: integer
+          format: int64
+        valeur:
+          type: number
+          format: float
+      title: TicketDTO
+    User:
+      type: object
+      properties:
+        activated:
+          type: boolean
+        email:
+          type: string
+        firstName:
+          type: string
+        id:
+          type: integer
+          format: int64
+        imageUrl:
+          type: string
+        langKey:
+          type: string
+        lastName:
+          type: string
+        login:
+          type: string
+        resetDate:
+          type: string
+          format: date-time
+      title: User
+    UserDTO:
+      type: object
+      properties:
+        activated:
+          type: boolean
+        authorities:
+          type: array
+          items:
+            type: string
+        createdBy:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        email:
+          type: string
+        firstName:
+          type: string
+        id:
+          type: integer
+          format: int64
+        imageUrl:
+          type: string
+        langKey:
+          type: string
+        lastModifiedBy:
+          type: string
+        lastModifiedDate:
+          type: string
+          format: date-time
+        lastName:
+          type: string
+        login:
+          type: string
+      title: UserDTO
+    UtilisateurDTO:
+      type: object
+      properties:
+        entrepriseId:
+          type: integer
+          format: int64
+        id:
+          type: integer
+          format: int64
+        nom:
+          type: string
+        prenom:
+          type: string
+      title: UtilisateurDTO
+    View:
+      type: object
+      properties:
+        contentType:
+          type: string
+      title: View
+    Map_string_Link_:
+      type: object
+      title: Map_string_Link_
+      additionalProperties:
+        $ref: "#/components/schemas/Link"
